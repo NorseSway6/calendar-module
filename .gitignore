@@ -1,0 +1,25 @@
+# Зависимости
+node_modules/
+/package-lock.json # Часто включается, но иногда игнорируется в монорепозиториях
+
+# Локальное окружение и логи
+.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+
+# Сборка и временные файлы
+/dist
+/build
+/tmp
+*.zip
+*.tar.gz
+.nyc_output/
+coverage/
+
+# IDE и системные файлы
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,12 @@
+src/
+node_modules/
+*.config.js
+*.config.ts
+tsconfig.json
+tsconfig.build.json
+.gitignore
+.eslintrc
+.prettierrc
+*.log
+test/
+examples/
