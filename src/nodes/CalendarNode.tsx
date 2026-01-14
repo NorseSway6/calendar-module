@@ -1,10 +1,10 @@
 // src/nodes/CalendarNode.tsx
-import { Handle, Position, NodeResizer, useUpdateNodeInternals } from '@xyflow/react';
+import { Handle, Position, NodeResizer, useUpdateNodeInternals, NodeProps } from '@xyflow/react';
 import { useState, useCallback, useEffect, useRef } from 'react';
 import App from '../App';
 import { CalendarNodeData, getInfo, FlowNodeUpdate } from '../integration/integration';
 
-interface CalendarNodeProps {
+export interface CalendarNodeProps {
   id: string;
   data: CalendarNodeData; 
   selected?: boolean;
@@ -34,7 +34,7 @@ const CalendarNode: React.FC<CalendarNodeProps> = ({
   const appDataRef = useRef<CalendarNodeData | null>(null);
   
   if (!appDataRef.current) {
-    console.log('🔧 [CalendarNode] getInfo called:', data.widgetConfig?.widgetId);
+    console.log('[CalendarNode] getInfo called:', data.widgetConfig?.widgetId);
     
     if (data.widgetConfig) {
       appDataRef.current = getInfo(data.widgetConfig);
@@ -237,7 +237,6 @@ const CalendarNode: React.FC<CalendarNodeProps> = ({
         padding: '4px'
       }}>
         <App 
-          apiBaseUrl={appData.apiBaseUrl}
           initialEvents={appData.events}
           onEventCreate={appData.onEventCreate}
           onEventDelete={appData.onEventDelete}
@@ -252,4 +251,3 @@ const CalendarNode: React.FC<CalendarNodeProps> = ({
 };
 
 export default CalendarNode;
-export type { CalendarNodeProps };

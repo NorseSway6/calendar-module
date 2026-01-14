@@ -24,20 +24,34 @@ npm install calendar-module
 
 1. Импортировать модуль:
 ```bash
-import { CalendarNode, initCalendarConfig, defaultBroadcastMessage, type WidgetConfig, getCalendarConfig } from 'calendar-module';
+import { CalendarNode, defaultBroadcastMessage, type WidgetConfig } from 'calendar-module';
 ```
 
-2. Сконфигурировать виджет, передав свои параметры:
+2. Создать файл .env:
 ```bash
-initCalendarConfig({
-  apiBaseUrl: 'http://calendarbacken.example/api',      // бекенд календаря
-  telegramBotUrl: 'https://t.me/your_test_bot',         // ссылка на бота
-  statsQueueMaxSize: 50,                                // максимальная величина очереди
-  platformApiUrl: 'http://platform.example/api'         // бекенд основной платформы
-});
+touch .env  # для linux
 ```
 
-3. Сделать коллбек закрепления виджета:
+3. Заполнить файл .env значениями:
+```bash
+# Пример
+REACT_APP_API_BASE_URL=http://localhost:8080/api        #бекенд календаря
+REACT_APP_TELEGRAM_BOT_URL=https://web.telegram.org/    #ссылка на бота
+REACT_APP_STATS_QUEUE_MAX_SIZE=2                        #максимальная величина очереди
+REACT_APP_PLATFORM_API_URL=http://platform.example/api  #бекенд основной платформы
+```
+
+4. Сконфигурировать:
+```bash
+const appConfig = {
+  apiBaseUrl: process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080/api',
+  telegramBotUrl: process.env.REACT_APP_TELEGRAM_BOT_URL || 'https://web.telegram.org,
+  statsQueueMaxSize: parseInt(process.env.REACT_APP_STATS_QUEUE_MAX_SIZE || '20', 10),
+  platformApiUrl: process.env.REACT_APP_PLATFORM_API_URL || 'http://localhost:3000/api',
+};
+```
+
+5. Сделать коллбек закрепления виджета:
 ```bash
 const updateNodePin = useCallback((nodeId: string, isPinned: boolean) => {
     setNodes((nds) =>
@@ -54,7 +68,7 @@ const updateNodePin = useCallback((nodeId: string, isPinned: boolean) => {
   }, [setNodes]);
 ```
 
-4. Добавить коллбек для отображения виджета и его закрепления:
+6. Добавить коллбек для отображения виджета и его закрепления:
 ```bash
 const nodesWithCallbacks = useMemo(() => {
     return nodes.map((node) => {
