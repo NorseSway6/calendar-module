@@ -7,7 +7,7 @@ export { getInfo } from './integration/integration';
 export type { CalendarNodeData, WidgetConfig, FlowNodeUpdate } from './integration/integration';
 
 // Экспорт конфигурации
-export { initCalendarConfig, calendarConfig } from './config';
+export { initCalendarConfig, getCalendarConfig } from './config';
 export type { CalendarWidgetConfig } from './config';
 
 // Экспорт функций платформы

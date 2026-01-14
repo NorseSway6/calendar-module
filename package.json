@@ -1,6 +1,6 @@
 {
   "name": "calendar-module",
-  "version": "1.0.0",
+  "version": "1.1.3",
   "description": "Календарь-виджет для интеграции в платформы",
   "main": "dist/index.js",
   "files": [
@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "tsc && cp src/App.css dist/ && cp -r src/components/css dist/components/",
+    "build": "tsc && xcopy src\\App.css dist\\App.css /Y && xcopy src\\components\\css dist\\components\\css /E /Y",
     "prepack": "npm run build"
   },
   "peerDependencies": {
